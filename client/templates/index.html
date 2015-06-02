@@ -1,1 +1,18 @@
-Foo
+{% load staticfiles %}
+<html lang="el">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta viewport="">
+        <link type="text/stylesheet" href="">
+    </head>
+    <body>
+
+        <!-- Angular -->
+        <script src="{% static '/client/js/angular/angular.js' %}"></script>
+        <script src="{% static '/client/js/angular-ui-router/release/angular-ui-router.js' %}"></script>
+        <script src="{% static '/client/js/angular-bootstrap/ui-bootstrap.js' %}"></script>
+
+    </body>
+</html>
+
