@@ -4,14 +4,26 @@
         <title></title>
         <meta charset="UTF-8">
         <meta viewport="">
-        <link type="text/stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'client/js/bower_components/bootstrap-css-only/css/bootstrap.css' %}">
     </head>
-    <body>
+    <body ng-app="App">
+        <div class="container">
+            <h1>Self-organizing Playlist</h1>
+            <div ui-view></div>
+        </div>
 
         <!-- Angular -->
-        <script src="{% static '/client/js/angular/angular.js' %}"></script>
-        <script src="{% static '/client/js/angular-ui-router/release/angular-ui-router.js' %}"></script>
-        <script src="{% static '/client/js/angular-bootstrap/ui-bootstrap.js' %}"></script>
+        <script src="{% static 'client/js/bower_components/angular/angular.js' %}"></script>
+        <script src="{% static 'client/js/bower_components/angular-ui-router/release/angular-ui-router.js' %}"></script>
+        <script src="{% static 'client/js/bower_components/angular-bootstrap/ui-bootstrap.js' %}"></script>
+        <script src="{% static 'client/js/App.js' %}"></script>
+
+        <!-- Controllers -->
+        <script src="{% static 'client/js/controllers/MainController.js' %}"></script>
+        <script src="{% static 'client/js/controllers/LoginController.js' %}"></script>
+        
+        <!-- Services -->
+        <script src="{% static 'client/js/services/UserFactory.js' %}"></script>
 
     </body>
 </html>
