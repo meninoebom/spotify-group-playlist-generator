@@ -2,7 +2,7 @@
 
 GPG's solve the problem of generating song playlists automatically based on the preferences of mulitiple users.
 This is a proof-of-concept-MVC-super-beta. 
-Uses Django, Django REST Framework, and Angular 
+Uses Django, Django REST Framework, Django-REST-Auth, Angular, and Angular-Django-REST-Auth 
 
 # Getting Started
 pip install -r requirements.txt
