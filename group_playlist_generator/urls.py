@@ -19,7 +19,11 @@ from client import urls as client_urls
 from spotify import urls as spotify_urls
 
 urlpatterns = [
+    # url(r'^ajax-auth/(?P<backend>[^/]+)/$','spotify.views.ajax_auth', name='ajax-auth'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(spotify_urls)),
     url(r'^', include(client_urls)),
+    url(r'^', include(spotify_urls)),
+    url(r'', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^rest-auth/', include('rest_auth.urls')),
 ]

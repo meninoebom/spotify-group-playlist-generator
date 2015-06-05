@@ -38,8 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'client',
     'spotify',
+    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,10 +69,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'group_playlist_generator.wsgi.application'
 
@@ -128,6 +135,76 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.spotify.SpotifyOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# spotify client id
+SOCIAL_AUTH_SPOTIFY_KEY = '4e92c02ac661441e8177ed1d20f0a2c3'
+# spotify client secret
+SOCIAL_AUTH_SPOTIFY_SECRET = 'ada92ccd1e844c20956e13ca94d12cda'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+
+# Python Social Auth Settings
+SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
+    'social.backends.spotify.SpotifyOAuth2',
+)
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/#/'
+
+SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/foo'
+
+SPOTIFY_AUTH_EXTRA_ARGUMENTS = {'state': '1h2g3g4j5gh6f3et3g'}
+
+SOCIAL_AUTH_SPOTIFY_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_SPOTIFY_SCOPE = [
+    'playlist-read-private',
+    'streaming',
+    'user-read-private',
+    'user-read-email',
+]
+
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged-in/'
+# #Used to redirect the user once the auth process ended successfully. The value of ?next=/foo is used if it was present
+#
+# SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
+# #URL where the user will be redirected in case of an error
+#
+# SOCIAL_AUTH_LOGIN_URL = '/login-url/'
+# #Is used as a fallback for LOGIN_ERROR_URL
+#
+# SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/new-users-redirect-url/'
+# #Used to redirect new registered users, will be used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL if defined.
+#
+# SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
+# #Like SOCIAL_AUTH_NEW_USER_REDIRECT_URL but for new associated accounts (user is already logged in). Used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL
+#
+# SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/account-disconnected-redirect-url/'
+# #The user will be redirected to this URL when a social account is disconnected
+#
+# SOCIAL_AUTH_INACTIVE_USER_URL = '/inactive-user/'
+# #Inactive users can be redirected to this URL when trying to authenticate.
+
+# http://psa.matiasaguirre.net/docs/configuration/django.html
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+
+# TODO Do I need this?
+# SOCIAL_AUTH_UID_LENGTH = 223
+# SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 100
+# SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 100
+
+# # TODO Do I need this?
+# SPOTIFY_AUTH_EXTRA_ARGUMENTS = {
+#       'response_type': 'code',
+#       'client_id': SOCIAL_AUTH_SPOTIFY_KEY,
+#       'scope': 'user-read-private user-read-email',
+#       'redirect_uri': SOCIAL_AUTH_LOGIN_REDIRECT_URL,
+# }
 
 try:
     from local_settings import *
