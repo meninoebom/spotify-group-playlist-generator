@@ -8,10 +8,26 @@ var App = angular.module('App', [
   ])
   .config(function($stateProvider, $urlRouterProvider){
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
 
     $stateProvider.state('index', {
       url: '/',
+      templateUrl: '/static/client/js/partials/index.html',
+      controller: 'mainController',
+      controllerAs: 'MC'
+    });
+
+
+    $stateProvider.state('login', {
+      url: '/login',
+      templateUrl: '/static/client/js/partials/login.html',
+      controller: 'loginController',
+      controllerAs: 'LIC',
+    });
+
+
+    $stateProvider.state('logout', {
+      url: '/logout',
       templateUrl: '/static/client/js/partials/index.html',
       controller: 'mainController',
       controllerAs: 'MC'
