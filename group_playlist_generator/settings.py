@@ -238,6 +238,10 @@ SOCIAL_AUTH_PIPELINE = (
     # a similar email address. Disabled by default.
     # 'social.pipeline.social_auth.associate_by_email',
 
+    # add the access key aka state to the kwargs that get set to user in create user func
+    'spotify.pipeline.get_state',
+
+
     # Create a user account if we haven't found one yet.
     'social.pipeline.user.create_user',
 
@@ -251,7 +255,6 @@ SOCIAL_AUTH_PIPELINE = (
     # Update the user record with any changed info from the auth service.
     'social.pipeline.user.user_details',
 
-    'spotify.pipeline.get_state',
 
 )
 
