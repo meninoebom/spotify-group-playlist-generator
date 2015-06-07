@@ -6,7 +6,7 @@ var App = angular.module('App', [
   'ngSanitize',
   'ngRoute'
   ])
-  .config(function($stateProvider, $urlRouterProvider){
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $provide){
 
     $urlRouterProvider.otherwise('/login');
 
@@ -42,4 +42,22 @@ var App = angular.module('App', [
       controllerAs: 'LOC'
     });
 
+    // $provide.factory('myHttpInterceptor', function($q) {
+    //   return {
+    //     // optional method
+    //     'request': function(config) {
+
+    //     },
+
+    //     // optional method
+    //    'requestError': function(rejection) {
+
+    //     }
+
+    //   };
+    // });
+
+    // $httpProvider.interceptors.push('myHttpInterceptor');
+
   });
+
